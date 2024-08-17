@@ -7,6 +7,7 @@
 , stdenv
 , installShellFiles
 , darwin
+, fetchpatch
 , crates ? [ "attic-client" ]
 }:
 rustPlatform.buildRustPackage {
@@ -31,6 +32,14 @@ rustPlatform.buildRustPackage {
   ] ++ lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
     SystemConfiguration
   ]);
+
+  patches = [
+    # Part of https://github.com/zhaofengli/attic/pull/159
+    (fetchpatch {
+      url = "https://github.com/zhaofengli/attic/commit/ac6b58fb8c9a152861a225adaa1ee03a59294292.patch";
+      sha256 = "sha256-sCO+fRwradBl+/b7vRuLcfNxTjVDsgYY8qx0wJ8ziL0=";
+    })
+  ];
 
   cargoLock = {
     lockFile = ./Cargo.lock;
