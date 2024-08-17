@@ -156,9 +156,9 @@ self = stdenv.mkDerivation {
     aws-sdk-cpp
   ];
 
-  installCheckInputs = lib.optionals atLeast221 [
+  installCheckInputs = lib.optionals (atLeast221 && !stdenv.hostPlatform.isStatic) [
     git
-  ] ++ lib.optionals atLeast219 [
+  ] ++ lib.optionals (atLeast219 && !stdenv.hostPlatform.isStatic) [
     man
   ];
 
