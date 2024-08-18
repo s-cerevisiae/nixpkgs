@@ -60,17 +60,8 @@ stdenv.mkDerivation rec {
   mesonFlags = [
     "-Dinstalled_test_prefix=${placeholder "installedTests"}"
     (lib.mesonEnable "introspection" withIntrospection)
-    (lib.mesonEnable "gtk_doc" withIntrospection)
+    (lib.mesonEnable "documentation" withIntrospection)
   ];
-
-  # Run-time dependency gi-docgen found: NO (tried pkgconfig and cmake)
-  # it should be a build-time dep for build
-  # TODO: send upstream
-  postPatch = ''
-    substituteInPlace doc/meson.build \
-      --replace "'gi-docgen', ver" "'gi-docgen', native:true, ver" \
-      --replace "'gi-docgen', req" "'gi-docgen', native:true, req"
-  '';
 
   doCheck = true;
 
