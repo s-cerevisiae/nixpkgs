@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchurl
+, docutils
 , glib
 , meson
 , ninja
@@ -40,6 +41,7 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
+    docutils # for rst2man, rst2html5
     meson
     ninja
     pkg-config
