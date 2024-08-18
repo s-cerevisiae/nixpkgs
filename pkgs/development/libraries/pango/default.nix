@@ -67,7 +67,7 @@ stdenv.mkDerivation (finalAttrs: {
   ];
 
   mesonFlags = [
-    (lib.mesonBool "gtk_doc" withIntrospection)
+    (lib.mesonBool "documentation" withIntrospection)
     (lib.mesonEnable "introspection" withIntrospection)
     (lib.mesonEnable "xft" x11Support)
   ];
