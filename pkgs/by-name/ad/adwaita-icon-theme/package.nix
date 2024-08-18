@@ -37,6 +37,13 @@ stdenv.mkDerivation rec {
     hicolor-icon-theme
   ];
 
+  postPatch = ''
+    # Postpone these changes for now, please discuss in https://github.com/NixOS/nixpkgs/pull/316416
+    substituteInPlace index.theme \
+      --replace-fail "Hidden=true" "" \
+      --replace-fail "Inherits=AdwaitaLegacy,hicolor" "Inherits=hicolor"
+  '';
+
   dontDropIconThemeCache = true;
 
   passthru = {
