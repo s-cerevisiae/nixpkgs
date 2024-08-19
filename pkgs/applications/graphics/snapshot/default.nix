@@ -12,6 +12,7 @@
 , gst_all_1
 , gtk4
 , libadwaita
+, libseccomp
 , pipewire
 , gnome
 }:
@@ -43,6 +44,7 @@ stdenv.mkDerivation (finalAttrs: {
     gst_all_1.gstreamer
     gtk4
     libadwaita
+    libseccomp
     pipewire # for device provider
   ];
 
