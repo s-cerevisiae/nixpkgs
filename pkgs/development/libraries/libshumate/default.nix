@@ -32,6 +32,11 @@ stdenv.mkDerivation (finalAttrs: {
     hash = "sha256-VMOsrq0FRul8tMY6++U8ydK2irVCT/g/B7HZIWuuKys=";
   };
 
+  patches = [
+    # https://gitlab.gnome.org/GNOME/libshumate/-/issues/81
+    ./json-glib-192-newline-escape.patch
+  ];
+
   depsBuildBuild = [
     # required to find native gi-docgen when cross compiling
     pkg-config
